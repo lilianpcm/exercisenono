@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+---
+{% import "components.njk" as c %}
+{% set p = catalog.products[page.fileSlug] %}
+{% set cat = catalog.categories[category] %}
+{% include "partials/breadcrumbs.njk" %}
+<article>
+  <header class="prose page-head">
+    <span class="pill">Printable PDF · A4 + US Letter</span>
+    <h1>{{ title or name }}</h1>
+    <p class="promise">{{ description }}</p>
+    <p style="margin:var(--space-3) 0 0"><a class="btn" href="{{ etsy(etsy_url, page.fileSlug, 'cta-top') }}" rel="noopener" data-etsy="cta-top">Get the printable on Etsy {{ icon("arrow-right") | safe }}</a></p>
+    {{ c.byShop() }}
+  </header>
+  <div class="wrap section">
+    {{ img(cover, cover_alt, { widths: [480, 720, 1080, 1600], sizes: "(min-width: 1120px) 1120px, 92vw", eager: true, cls: "product-card__img" }) | safe }}
+  </div>
+  <div class="prose">
+    <h2 id="inside">What's inside</h2>
+    <ul class="cta__ticks">{% for t in includes %}<li>{{ icon("check") | safe }} <span>{{ t }}</span></li>{% endfor %}</ul>
+    <p>Instant download. Print at home — A4 and US Letter included. No physical item is shipped.</p>
+  </div>
+  {% if thumbs and thumbs.length %}
+  <div class="wrap">
+    <ul class="gallery">
+      {% for t in thumbs %}<li><figure>{{ img(t.src, t.alt, { widths: [320, 480, 720], sizes: "(min-width: 760px) 265px, 45vw" }) | safe }}{% if t.caption %}<figcaption>{{ t.caption }}</figcaption>{% endif %}</figure></li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <div class="prose">
+    <div class="content">
+{{ content | safe }}
+    </div>
+
+    {% if sample_exercises and sample_exercises.length %}
+    <h2 id="samples">Sample exercises from this printable</h2>
+    <ul class="linklist">{% for s in sample_exercises %}<li><a href="{{ catalog.exercises[s].url }}">{{ catalog.exercises[s].name }}</a></li>{% endfor %}</ul>
+    {% endif %}
+
+    {% set guides = [] %}
+    {% for post in catalog.posts %}{% if post.product == page.fileSlug %}{% set _ = guides.push(post) %}{% endif %}{% endfor %}
+    {% if guides.length %}
+    <h2 id="free-guide">Read the full routine for free</h2>
+    <ul class="linklist">{% for g in guides %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul>
+    {% endif %}
+
+    {{ c.faq(faq, "Questions about the files") }}
+    {{ c.cta(p, page.fileSlug, "cta-final") }}
+    {{ c.disclaimer() }}
+  </div>
+</article>

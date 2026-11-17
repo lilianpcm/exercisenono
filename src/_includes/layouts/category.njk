@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+---
+{% import "components.njk" as c %}
+{% set cat = catalog.categories[key] %}
+{% include "partials/breadcrumbs.njk" %}
+<article>
+  <div class="wrap">{{ c.hero(cat, hero or cat) }}</div>
+  <header class="prose page-head">
+    <h1>{{ title }}</h1>
+    <p class="promise">{{ intro }}</p>
+  </header>
+  <div class="prose">
+    {% if key_takeaways %}{{ c.takeaways(key_takeaways) }}{% endif %}
+    <div class="content">
+{{ content | safe }}
+    </div>
+    {{ c.disclaimer(safety_note) }}
+  </div>
+
+  <section class="band" aria-labelledby="guides-h">
+    <div class="wrap">
+      <h2 id="guides-h">{{ cat.name }} guides</h2>
+      <ul class="grid grid--3" style="margin-top:var(--space-3)">
+        {% for p in catalog.posts %}{% if p.category == key %}<li>{{ c.postCard(p) }}</li>{% endif %}{% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {% set exs = [] %}
+  {% for e in catalog.exerciseList %}{% if e.category == key %}{% set _ = exs.push(e) %}{% endif %}{% endfor %}
+  {% set prods = [] %}
+  {% for p in catalog.productList %}{% if p.category == key %}{% set _ = prods.push(p) %}{% endif %}{% endfor %}
+
+  {% if exs.length %}
+  <section class="prose section" aria-labelledby="cat-ex-h">
+    <h2 id="cat-ex-h">Exercises in this category</h2>
+    <ul class="linklist">{% for e in exs %}<li><a href="{{ e.url }}">{{ e.name }}</a></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if prods.length %}
+  <section class="wrap section" aria-labelledby="cat-pr-h">
+    <h2 id="cat-pr-h">Printables</h2>
+    <ul class="grid grid--3" style="margin-top:var(--space-3)">{% for p in prods %}<li>{{ c.productCard(p, cat.slug) }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  <div class="prose">
+    {{ c.faq(faq) }}
+    {{ c.sources(sources) }}
+  </div>
+</article>

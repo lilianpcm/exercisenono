@@ -1,0 +1,5 @@
+<p class="meta">
+  <span>By <a href="/editorial-policy/">{{ site.author }}</a></span>
+  {% if date %}<span>Published <time datetime="{{ date | isoDate }}">{{ date | longDate }}</time></span>{% endif %}
+  {% if updated %}<span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | longDate }}</time></span>{% endif %}
+</p>

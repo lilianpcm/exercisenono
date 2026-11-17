@@ -1,0 +1,226 @@
+{# Componentes do site. Uso: {% import "components.njk" as c %} e depois {{ c.nome(...) }} #}
+
+{# ---------- pílulas e número ---------- #}
+{% macro catPill(cat, link=true) -%}
+{% if link and cat.status != "off" %}<a class="pill pill--label" href="{{ cat.url }}" data-category="{{ cat.key }}">{{ cat.name }}</a>{% else %}<span class="pill pill--label" data-category="{{ cat.key }}">{{ cat.name }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro dose(text) -%}<span class="pill pill--dose">{{ text }}</span>{%- endmacro %}
+
+{% macro num(n, small=false) -%}<span class="num{% if small %} num--sm{% endif %}">{{ n | pad2 }}</span>{%- endmacro %}
+
+{# ---------- aviso de saúde ---------- #}
+{% macro disclaimer(text="") %}
+<aside class="disclaimer" aria-label="Health note">
+  {{ icon("shield-check") | safe }}
+  <p>{{ text or "Check with your doctor before starting a new exercise routine, especially if you have a health condition. Stop if something hurts." }} <a href="/disclaimer/">Read the full disclaimer</a>.</p>
+</aside>
+{% endmacro %}
+
+{# ---------- key takeaways ---------- #}
+{% macro takeaways(items) %}
+<section class="takeaways" aria-labelledby="takeaways-h">
+  <h2 id="takeaways-h">Key takeaways</h2>
+  <ul>{% for t in items %}<li>{{ t }}</li>{% endfor %}</ul>
+</section>
+{% endmacro %}
+
+{# ---------- FAQ ---------- #}
+{% macro faq(items, heading="Frequently asked questions") %}
+{% if items and items.length %}
+<section class="faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">{{ heading }}</h2>
+  {% for f in items %}
+  <details>
+    <summary>{{ f.q }} {{ icon("chevron-down") | safe }}</summary>
+    <div><p>{{ f.a }}</p></div>
+  </details>
+  {% endfor %}
+</section>
+{% endif %}
+{% endmacro %}
+
+{# ---------- fontes ---------- #}
+{% macro sources(items) %}
+{% if items and items.length %}
+<section class="sources" aria-labelledby="sources-h">
+  <h2 id="sources-h">Sources</h2>
+  <p>We check our content against recognized health institutions. See our <a href="/editorial-policy/">editorial policy</a>.</p>
+  <ol>{% for s in items %}<li><a href="{{ s.url }}" rel="noopener">{{ s.name }}</a></li>{% endfor %}</ol>
+</section>
+{% endif %}
+{% endmacro %}
+
+{# ---------- linha "by The Shop Curator" ---------- #}
+{% macro byShop() -%}
+<p class="cta__by">by {{ img("brand/the-shop-curator-logo.png", "The Shop Curator", { widths: [180, 360], sizes: "90px" }) | safe }}</p>
+{%- endmacro %}
+
+{# ---------- caixa de CTA ---------- #}
+{% macro cta(p, campaign, position) %}
+<aside class="cta" data-category="{{ p.category }}" aria-label="Printable version">
+  {{ img(p.cover, p.cover_alt, { widths: [240, 480, 720], sizes: "(min-width: 640px) 240px, 92vw", cls: "cta__img" }) | safe }}
+  <div>
+    <span class="pill">Printable PDF · A4 + US Letter</span>
+    <h2 class="cta__name">{{ p.name }}</h2>
+    <ul class="cta__ticks">{% for t in p.includes %}<li>{{ icon("check") | safe }} <span>{{ t }}</span></li>{% endfor %}</ul>
+    <a class="btn" href="{{ etsy(p.etsy_url, campaign, position) }}" rel="noopener" data-etsy="{{ position }}">Get the printable on Etsy {{ icon("arrow-right") | safe }}</a>
+    {{ byShop() }}
+  </div>
+</aside>
+{% endmacro %}
+
+{# ---------- card de produto ---------- #}
+{% macro productCard(p, campaign) %}
+<article class="card product-card" data-category="{{ p.category }}">
+  {{ img(p.cover, p.cover_alt, { widths: [320, 480, 720], sizes: "(min-width: 960px) 330px, (min-width: 640px) 45vw, 92vw", cls: "product-card__img" }) | safe }}
+  <span class="pill" style="justify-self:start">Printable PDF · A4 + US Letter</span>
+  <h3><a href="{{ p.url }}">{{ p.name }}</a></h3>
+  <p class="product-card__actions">
+    <a class="btn" href="{{ etsy(p.etsy_url, campaign, 'product-card') }}" rel="noopener" data-etsy="product-card">Get it on Etsy {{ icon("arrow-right") | safe }}</a>
+  </p>
+</article>
+{% endmacro %}
+
+{# ---------- card de post ---------- #}
+{% macro postCard(p) %}
+{% set cat = catalog.categories[p.category] %}
+<article class="card post-card" data-category="{{ p.category }}">
+  <p style="margin:0">{{ catPill(cat, false) }}</p>
+  <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+  <p>{{ p.description }}</p>
+  <a class="post-card__more" href="{{ p.url }}">{{ "Read the article" if p.kind == "article" else "See the routine" }}<span class="vh">: {{ p.title }}</span> {{ icon("arrow-right") | safe }}</a>
+</article>
+{% endmacro %}
+
+{# ---------- card de categoria ---------- #}
+{% macro catCard(cat, linked=true) %}
+{% if linked %}<a class="card cat-card" href="{{ cat.url }}" data-category="{{ cat.key }}">{% else %}<div class="card cat-card" data-category="{{ cat.key }}">{% endif %}
+  <p class="cat-card__title">{% if cat.w1 %}<span>{{ cat.w1 }}</span>{% endif %}<span class="acc">{{ cat.w2 }}</span></p>
+  <span class="cat-card__foot"><span class="pill">{{ cat.postCount }} {{ "guide" if cat.postCount == 1 else "guides" }}</span> {{ icon("arrow-right") | safe }}</span>
+{% if linked %}</a>{% else %}</div>{% endif %}
+{% endmacro %}
+
+{# ---------- ilustração START → FINISH + vídeo de demonstração ---------- #}
+{% macro exMedia(ex, v, eager=false) %}
+<figure class="ex-media"{% if v.video %} data-demo{% endif %}>
+  <div class="ex-stage">
+    <div class="ex-poses">
+      <div class="ex-pose">{{ img(v.start, v.alt + " — start position", { widths: [200, 400], sizes: "(min-width: 500px) 190px, 40vw", eager: eager }) | safe }}<span class="label">Start</span></div>
+      <span class="ex-arrow">{{ icon("arrow-right") | safe }}</span>
+      <div class="ex-pose">{{ img(v.finish, v.alt + " — finish position", { widths: [200, 400], sizes: "(min-width: 500px) 190px, 40vw", eager: eager }) | safe }}<span class="label">Finish</span></div>
+    </div>
+    {% if v.video %}
+    <video class="ex-video" hidden muted loop playsinline preload="none" width="{{ v.video.width or 600 }}" height="{{ v.video.height or 820 }}" aria-label="{{ ex.name }} demo video">
+      {% if v.video.webm %}<source src="/assets/video/{{ v.video.webm }}" type="video/webm">{% endif %}
+      <source src="/assets/video/{{ v.video.mp4 }}" type="video/mp4">
+      {% if v.video.gif %}<img src="/assets/video/{{ v.video.gif }}" alt="{{ ex.name }} demo" loading="lazy" width="{{ v.video.width or 600 }}" height="{{ v.video.height or 820 }}">{% endif %}
+    </video>
+    {% endif %}
+  </div>
+  {% if v.video %}
+  <p class="ex-media__actions">
+    <button type="button" class="btn-ghost" data-demo-toggle hidden>{{ icon("play") | safe }} <span>Play demo</span></button>
+    <a class="btn-ghost nojs-only" href="/assets/video/{{ v.video.mp4 }}">{{ icon("play") | safe }} Watch the demo video</a>
+  </p>
+  {% endif %}
+</figure>
+{% endmacro %}
+
+{# ---------- card de exercício (dentro dos posts) ---------- #}
+{% macro exCard(ex, n, doseText, note, audience) %}
+{% set v = ex | variantFor(audience) %}
+<article class="ex-card" id="{{ ex.slug }}">
+  <header class="ex-card__head">
+    {{ num(n) }}
+    <h3 class="ex-card__name"><a href="{{ ex.url }}">{{ ex.name }}</a></h3>
+    {{ dose(doseText) }}
+  </header>
+  {{ exMedia(ex, v) }}
+  <ol class="steps">{% for s in ex.steps %}<li>{{ s }}</li>{% endfor %}</ol>
+  <p class="tip"><strong>Tip:</strong> {{ ex.tip }}</p>
+  {% if note %}<p class="ex-card__note">{{ note }}</p>{% endif %}
+  <p class="ex-card__more"><a href="{{ ex.url }}">{{ ex.name }}: common mistakes and easier options</a> {{ icon("arrow-right") | safe }}</p>
+</article>
+{% endmacro %}
+
+{# ---------- bloco de free printable (formulário = placeholder para serviço externo) ---------- #}
+{% macro freebie() %}
+<section class="freebie" aria-labelledby="freebie-h">
+  <span class="pill">Free printable</span>
+  <h2 id="freebie-h">[FREE PRINTABLE TITLE]</h2>
+  <p>[FREE PRINTABLE — one line on what the reader gets]</p>
+  <div class="placeholder-note">[EMAIL FORM — paste the embed code of the email service (e.g. MailerLite) here]</div>
+</section>
+{% endmacro %}
+
+{# ---------- cabeçalho de categoria: as 10 composições da marca em HTML ---------- #}
+{% macro hero(cat, h) %}
+<div class="hb hb--{{ cat.key }}" data-category="{{ cat.key }}">
+  <div class="hb__in">
+  {% if cat.key == "joint" %}
+    <div class="hb__main">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      <p class="hb__title">{{ h.w1 }} <span class="acc">{{ h.w2 }}</span></p>
+    </div>
+    {% if h.lines %}<p class="hb__stack">{% for l in h.lines %}<span>{{ l }}</span>{% endfor %}</p>{% endif %}
+  {% elif cat.key == "taichi" %}
+    <span class="pill pill--label">{{ cat.name }}</span>
+    <p class="hb__title">{% if h.box %}<span class="hb__box">{{ h.box }}</span>{% endif %}<span>{{ h.w1 }} {{ h.w2 }}</span></p>
+    {% if h.label %}<p class="hb__label">{{ h.label }}</p>{% endif %}
+  {% elif cat.key == "balance" %}
+    {% if h.icon %}<span class="hb__circle">{{ icon(h.icon) | safe }}</span>{% endif %}
+    <div class="hb__main">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      <p class="hb__title"><span class="acc">{{ h.w1 }}</span> {{ h.w2 }}</p>
+      {% if h.label %}<p class="hb__label">{{ h.label }}</p>{% endif %}
+    </div>
+  {% elif cat.key == "chair" %}
+    <div class="hb__main">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      <p class="hb__title">{{ h.w1 }} <span class="acc">{{ h.w2 }}</span></p>
+      {% if h.sub %}<p class="hb__sub">{{ h.sub }}</p>{% endif %}
+    </div>
+    {% if h.lines or h.icon %}<p class="hb__panel">{% if h.icon %}{{ icon(h.icon) | safe }}{% endif %}{% for l in h.lines %}<span>{{ l }}</span>{% endfor %}</p>{% endif %}
+  {% elif cat.key == "recovery" %}
+    <div class="hb__row">
+      {{ icon(h.icon or "heart-pulse") | safe }}
+      <p class="hb__title">{{ h.w1 }} {{ h.w2 }}</p>
+      {{ icon(h.icon or "heart-pulse") | safe }}
+    </div>
+    {% if h.label %}<p class="hb__bar">{{ h.label }}</p>{% endif %}
+  {% elif cat.key == "wellness" %}
+    {% if h.icon %}{{ icon(h.icon) | safe }}{% endif %}
+    <div class="hb__row"><p class="hb__title">{{ h.w1 }} <span class="acc">{{ h.w2 }}</span></p></div>
+    {% if h.label %}<p class="hb__label">{{ h.label }}</p>{% endif %}
+  {% elif cat.key == "gym" %}
+    <div class="hb__main">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      <p class="hb__title"><span>{{ h.w1 }}</span> <span class="hb__tilt">{{ h.w2 }}</span></p>
+      {% if h.label %}<p class="hb__label">{{ h.label }}</p>{% endif %}
+    </div>
+    {% if h.icon %}{{ icon(h.icon) | safe }}{% endif %}
+  {% elif cat.key == "pain" %}
+    {% if h.icon %}<span class="hb__circle">{{ icon(h.icon) | safe }}</span>{% endif %}
+    <div class="hb__main">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      <p class="hb__title">{{ h.w1 }} <span class="acc">{{ h.w2 }}</span></p>
+      {% if h.sub %}<p class="hb__sub">{{ h.sub }}</p>{% endif %}
+    </div>
+  {% elif cat.key == "stretching" %}
+    <div class="hb__main">
+      <p class="hb__title">{% if h.w1 %}<span class="hb__small">{{ h.w1 }}</span>{% endif %}{{ h.w2 }}</p>
+    </div>
+    <p class="hb__side">
+      <span class="pill pill--label">{{ cat.name }}</span>
+      {% for l in h.lines %}<span>{{ l }}</span>{% endfor %}
+      {% if h.label %}<span class="hb__label" style="font-family:var(--font-sans)">{{ h.label }}</span>{% endif %}
+    </p>
+  {% elif cat.key == "pilates" %}
+    <span class="pill pill--label">{{ cat.name }}</span>
+    <p class="hb__title">{{ h.w1 }}</p>
+    <p class="hb__waves">{{ icon("waves") | safe }} <span>{{ h.sub or h.w2 }}</span> {{ icon("waves") | safe }}</p>
+  {% endif %}
+  </div>
+</div>
+{% endmacro %}

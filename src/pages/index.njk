@@ -1,0 +1,125 @@
+---
+permalink: /
+layout: layouts/base.njk
+type: home
+schema: home
+seo_title: "[HOME SEO TITLE — up to 60 characters, main keyword first]"
+---
+{% import "components.njk" as c %}
+{# ---------------------------------------------------------------------------
+   HOME. O que aparece aqui é escolhido assim:
+   - Most popular, Printable of the week, card do free printable e faixa do Pinterest: src/_data/site.json > "home".
+   - Lista de posts: os mais recentes (até 6), com a frase da marca depois do 2º.
+--------------------------------------------------------------------------- #}
+{% set potw = catalog.products[site.home.printable_of_the_week] %}
+
+<div class="wrap">
+  {# 4. Duas colunas: no celular a coluna principal vem primeiro e a barra lateral desce #}
+  <div class="home-cols" style="margin-top:var(--space-4)">
+    <div class="home-main">
+      <h1 class="home-h1">[HOME H1 — what the site is, main keyword first]</h1>
+      {% for p in catalog.posts %}{% if loop.index <= 6 %}
+      {% set cat = catalog.categories[p.category] %}
+      {% set pic = p.card_image or p.og_image %}
+      {% set firstEx = catalog.exercises[p.exercises[0].ref] if p.exercises and p.exercises.length else null %}
+      <article class="card hcard" data-category="{{ p.category }}">
+        {% if pic %}
+        <a class="hcard__media" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{{ img(pic, "", { widths: [320, 480, 720], sizes: "(min-width: 960px) 350px, (min-width: 640px) 45vw, 92vw", eager: loop.first }) | safe }}</a>
+        {% elif firstEx %}
+        <a class="hcard__media hcard__media--contain" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{{ img((firstEx | variantFor(p.audience)).finish, "", { widths: [200, 400], sizes: "200px", eager: loop.first }) | safe }}</a>
+        {% else %}
+        <a class="hcard__media" href="{{ p.url }}" tabindex="-1" aria-hidden="true"><span class="hcard__words">{{ cat.w1 }} {{ cat.w2 }}</span></a>
+        {% endif %}
+        <div class="hcard__body">
+          <p class="hcard__date"><time datetime="{{ p.date | isoDate }}">{{ p.date | longDate }}</time></p>
+          {{ c.catPill(cat) }}
+          <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
+        </div>
+      </article>
+      {% if loop.index == 2 or (loop.last and loop.index < 2) %}
+      <blockquote class="brandline">
+        <p>{{ site.brand_line }}</p>
+        <footer>— {{ site.name }}</footer>
+      </blockquote>
+      {% endif %}
+      {% endif %}{% endfor %}
+
+      {% if potw %}
+      <section class="potw" data-category="{{ potw.category }}" aria-labelledby="potw-h">
+        <span class="pill">Printable of the week</span>
+        <h2 id="potw-h">{{ potw.name }}</h2>
+        <div class="potw__row">
+          {{ img(potw.cover, potw.cover_alt, { widths: [96, 192, 320], sizes: "96px" }) | safe }}
+          <p class="potw__text">Printable PDF · A4 + US Letter<br><span class="muted">{{ site.shop_name }} on Etsy</span></p>
+          <a class="btn" href="{{ etsy(potw.etsy_url, 'home', 'printable-of-the-week') }}" rel="noopener" data-etsy="printable-of-the-week">Get it on Etsy {{ icon("arrow-right") | safe }}</a>
+        </div>
+      </section>
+      {% endif %}
+    </div>
+
+    <aside class="home-side" aria-label="About and more">
+      <section class="card side-block" aria-labelledby="side-about-h">
+        <h2 id="side-about-h">About</h2>
+        <div class="side-about__top">
+          <img src="/assets/brand/exercise-no-no-512.png" alt="" width="64" height="64" loading="lazy">
+          <span class="side-about__name">{{ site.name }}</span>
+        </div>
+        <p>{{ site.about_blurb }}</p>
+        <p><a href="/about/">More about this site</a></p>
+      </section>
+
+      {% if catalog.liveCats.length %}
+      <section class="card side-block" aria-labelledby="side-cats-h">
+        <h2 id="side-cats-h">Categories</h2>
+        <ul class="side-list">
+          {% for cat in catalog.liveCats %}<li data-category="{{ cat.key }}"><a href="{{ cat.url }}">{{ cat.name }} <span class="pill">{{ cat.postCount }}</span></a></li>{% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {# Card do printable grátis: com imagem (site.json > home.free_printable.image) ou compacto, sem imagem #}
+      <a class="side-free" href="{{ site.home.free_printable.url }}">
+        {% if site.home.free_printable.image %}{{ img(site.home.free_printable.image, "", { widths: [300, 600], sizes: "(min-width: 960px) 300px, 92vw" }) | safe }}{% endif %}
+        <span class="side-free__body">
+          <span class="pill pill--plain">Free printable</span>
+          <span class="side-free__name">{{ site.home.free_printable.title }}</span>
+          <span class="side-free__more">Get it free {{ icon("arrow-right") | safe }}</span>
+        </span>
+      </a>
+
+      {% if site.home.popular.length %}
+      <section class="card side-block" aria-labelledby="side-pop-h">
+        <h2 id="side-pop-h">Most popular</h2>
+        <ol class="popular">
+          {% for slug in site.home.popular %}{% for p in catalog.posts %}{% if p.slug == slug %}
+          <li data-category="{{ p.category }}"><a href="{{ p.url }}">{{ c.num(site.home.popular.indexOf(slug) + 1, true) }}<span><span class="popular__title">{{ p.title }}</span><span class="popular__date">{{ p.date | longDate }}</span></span></a></li>
+          {% endif %}{% endfor %}{% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      <section class="card side-block" aria-labelledby="side-mail-h">
+        <h2 id="side-mail-h">Free printable by email</h2>
+        <div class="placeholder-note">[EMAIL FORM — embed code of the email service goes here]</div>
+      </section>
+    </aside>
+  </div>
+
+  {# 5. Faixa com 4 imagens para o Pinterest #}
+  {% set pinUrl = site.social.pinterest if site.social.pinterest.slice(0, 4) == "http" else "" %}
+  <section aria-labelledby="pins-h">
+    <h2 id="pins-h" class="vh">On Pinterest</h2>
+    <ul class="pins">
+      {% for pin in site.home.pins %}{% if loop.index <= 4 %}
+      <li>{% set href = pin.url or pinUrl %}{% if href %}<a href="{{ href }}" rel="noopener" aria-label="{{ pin.alt }} — on Pinterest">{% endif %}{{ img(pin.image, pin.alt, { widths: [280, 560], sizes: "(min-width: 760px) 270px, 46vw" }) | safe }}{% if href %}</a>{% endif %}</li>
+      {% endif %}{% endfor %}
+    </ul>
+  </section>
+
+  {# 6. Bloco central de e-mail #}
+  <section class="signup" aria-labelledby="signup-h">
+    <h2 id="signup-h">Get the free printable</h2>
+    <p>{{ site.home.free_printable.title }}</p>
+    <div class="placeholder-note">[EMAIL FORM — embed code of the email service goes here]</div>
+  </section>
+</div>

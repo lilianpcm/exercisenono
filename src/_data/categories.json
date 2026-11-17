@@ -1,0 +1,12 @@
+[
+  { "key": "joint", "name": "Joint & Bone Health", "slug": "joint-bone-health", "display": "display", "w1": "JOINT & BONE", "w2": "HEALTH" },
+  { "key": "taichi", "name": "Tai Chi & Qigong", "slug": "tai-chi-qigong", "display": "bebas", "w1": "TAI CHI", "w2": "& QIGONG" },
+  { "key": "balance", "name": "Balance & Strength", "slug": "balance-strength", "display": "display", "w1": "BALANCE", "w2": "& STRENGTH" },
+  { "key": "chair", "name": "Chair Exercises", "slug": "chair-exercises", "display": "oswald", "w1": "CHAIR", "w2": "EXERCISES" },
+  { "key": "recovery", "name": "Recovery & Special Conditions", "slug": "recovery-special-conditions", "display": "display", "w1": "RECOVERY", "w2": "& SPECIAL CONDITIONS" },
+  { "key": "wellness", "name": "Wellness & Calm", "slug": "wellness-calm", "display": "bebas", "w1": "WELLNESS", "w2": "& CALM" },
+  { "key": "gym", "name": "Gym & Strength Training", "slug": "strength-training", "display": "display", "w1": "STRENGTH", "w2": "TRAINING" },
+  { "key": "pain", "name": "Pain Relief & Mobility", "slug": "mobility", "display": "display", "w1": "PAIN RELIEF", "w2": "& MOBILITY" },
+  { "key": "stretching", "name": "Stretching", "slug": "stretching", "display": "barlow", "w1": "", "w2": "STRETCHING" },
+  { "key": "pilates", "name": "Pilates, Yoga & Aqua", "slug": "pilates-yoga-aqua", "display": "bebas", "w1": "PILATES", "w2": "YOGA · AQUA" }
+]

@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+---
+{% import "components.njk" as c %}
+{% set ex = catalog.exercises[page.fileSlug] %}
+{% set cat = catalog.categories[category] %}
+{% include "partials/breadcrumbs.njk" %}
+<article>
+  <header class="prose page-head">
+    {{ c.catPill(cat) }}
+    <h1>{{ title or name }}</h1>
+    <p class="promise">{{ answer }}</p>
+    {% include "partials/meta.njk" %}
+  </header>
+  <div class="prose">
+    {% for v in ex.variants %}{{ c.exMedia(ex, v, loop.first) }}{% endfor %}
+
+    <dl class="facts" style="margin-top:var(--space-3)">
+      <div><dt>Muscles worked</dt><dd>{{ muscles | join(", ") }}</dd></div>
+      <div><dt>Equipment</dt><dd>{{ equipment | join(", ") }}</dd></div>
+      {% if also_known_as and also_known_as.length %}<div><dt>Also called</dt><dd>{{ also_known_as | join(", ") }}</dd></div>{% endif %}
+    </dl>
+
+    <h2 id="how-to">How to do {{ article or "the" }} {{ name | lower }}</h2>
+    <ol class="steps">{% for s in steps %}<li>{{ s }}</li>{% endfor %}</ol>
+    <p class="tip"><strong>Tip:</strong> {{ tip }}</p>
+    {{ c.disclaimer(safety_note) }}
+
+    <h2 id="common-mistakes"><span class="nono">No no:</span> common mistakes</h2>
+    <ul class="mistakes">{% for m in common_mistakes %}<li>{{ icon("circle-x") | safe }} <span>{{ m }}</span></li>{% endfor %}</ul>
+
+    {% if easier or harder %}
+    <h2 id="variations">Make it easier or harder</h2>
+    <div class="levels">
+      {% if easier %}<div><h3>Easier</h3><p>{{ easier }}</p></div>{% endif %}
+      {% if harder %}<div><h3>Harder</h3><p>{{ harder }}</p></div>{% endif %}
+    </div>
+    {% endif %}
+
+    <div class="content">
+{{ content | safe }}
+    </div>
+
+    {{ c.faq(faq) }}
+
+    {% if ex.posts.length %}
+    <h2 id="routines">Routines with this exercise</h2>
+    <ul class="linklist">{% for s in ex.posts %}{% for p in catalog.posts %}{% if p.slug == s %}<li><a href="{{ p.url }}">{{ p.title }}</a></li>{% endif %}{% endfor %}{% endfor %}</ul>
+    {% endif %}
+
+    {% if ex.products.length %}
+    <h2 id="printables">Printables with this exercise</h2>
+    {% for s in ex.products %}{{ c.cta(catalog.products[s], page.fileSlug, "cta-exercise") }}{% endfor %}
+    {% endif %}
+
+    {{ c.sources(sources) }}
+    <p style="margin-top:var(--space-4)"><a class="btn-ghost" href="/exercises/">All exercises {{ icon("arrow-right") | safe }}</a></p>
+  </div>
+</article>

@@ -1,0 +1,23 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}
+
+> {{ site.description }}
+
+{{ site.name }} ({{ site.url }}) publishes free, illustrated exercise guides with start and finish positions, step-by-step instructions and common mistakes. Printable PDF versions (A4 and US Letter) are sold by {{ site.shop_name }} on Etsy. General information, not medical advice.
+
+## Guides
+{% for p in catalog.posts %}{% if p.indexable %}
+- [{{ p.title }}]({{ site.url }}{{ p.url }}): {{ p.description }}{% endif %}{% endfor %}
+
+## Exercise library
+{% for e in catalog.exerciseList %}{% if e.indexable %}
+- [{{ e.name }}]({{ site.url }}{{ e.url }}): {{ e.answer }}{% endif %}{% endfor %}
+
+## About
+
+- [Editorial policy]({{ site.url }}/editorial-policy/)
+- [Disclaimer]({{ site.url }}/disclaimer/)
+- [About]({{ site.url }}/about/)

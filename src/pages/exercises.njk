@@ -1,0 +1,32 @@
+---
+permalink: /exercises/
+layout: layouts/base.njk
+crumb: "Exercise library"
+gate: exercises
+title: "[EXERCISE LIBRARY H1 — e.g. Exercise library: illustrated step-by-step guides]"
+seo_title: "[EXERCISE LIBRARY SEO TITLE — up to 60 characters]"
+description: "[EXERCISE LIBRARY META DESCRIPTION — up to 160 characters]"
+---
+{% import "components.njk" as c %}
+{% include "partials/breadcrumbs.njk" %}
+<header class="prose page-head">
+  <h1>{{ title }}</h1>
+  <p class="promise">[EXERCISE LIBRARY INTRO — 1-2 sentences: every exercise has start and finish pictures, steps and common mistakes]</p>
+</header>
+<div class="wrap section">
+  <ul class="grid grid--3">
+    {% for e in catalog.exerciseList %}
+    {% set v = e.variants[0] %}
+    <li>
+      <article class="card post-card" data-category="{{ e.category }}">
+        <p style="margin:0">{{ c.catPill(catalog.categories[e.category], false) }}</p>
+        <h2 style="font-size:22px;line-height:28px;margin:0"><a href="{{ e.url }}">{{ e.name }}</a></h2>
+        <p class="muted">{{ e.equipment | join(", ") }}</p>
+        <a href="{{ e.url }}" tabindex="-1" aria-hidden="true">{{ img(v.finish, "", { widths: [200, 400], sizes: "160px", extra: 'style="max-height:200px;width:auto;margin-inline:auto"' }) | safe }}</a>
+        <a class="post-card__more" href="{{ e.url }}">How to do it<span class="vh">: {{ e.name }}</span> {{ icon("arrow-right") | safe }}</a>
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="prose">{{ c.disclaimer() }}</div>

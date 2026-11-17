@@ -1,0 +1,107 @@
+---
+permalink: /styleguide/
+layout: layouts/base.njk
+title: "Style guide"
+description: "Every component of the Exercise No No site in one place."
+noindex: true
+crumb: "Style guide"
+---
+{% import "components.njk" as c %}
+{% set ex = catalog.exerciseList[0] %}
+{% set prod = catalog.productList[0] %}
+{% set samples = {
+  joint: { w1: "KNEE", w2: "STRENGTH", lines: ["FOR SENIORS", "16 GENTLE MOVES", "AT HOME"] },
+  taichi: { box: "28-DAY", w1: "CHAIR", w2: "TAI CHI", label: "A GENTLE 4-WEEK CHALLENGE FOR SENIORS" },
+  balance: { w1: "STAND", w2: "STEADY", icon: "person-standing", label: "FALL PREVENTION · SENIOR MEN" },
+  chair: { w1: "CHAIR", w2: "POWER", sub: "FULL BODY · SITTING DOWN", icon: "armchair", lines: ["SENIOR MEN", "28 DAYS"] },
+  recovery: { w1: "STROKE", w2: "RECOVERY", icon: "heart-pulse", label: "GENTLE REHAB MOVES · AT HOME" },
+  wellness: { w1: "SOMATIC", w2: "RESET", icon: "leaf", label: "CALM YOUR NERVOUS SYSTEM · WOMEN 50+" },
+  gym: { w1: "KETTLEBELL", w2: "BURN", icon: "dumbbell", label: "FULL BODY · WOMEN · 28-DAY" },
+  pain: { w1: "HAPPY", w2: "HIPS", icon: "hand-heart", sub: "MOBILITY FOR WOMEN 50+ · NO EQUIPMENT" },
+  stretching: { w1: "RISE &", w2: "STRETCH", lines: ["10-MINUTE", "MORNING ROUTINE"], label: "FOR SENIORS" },
+  pilates: { w1: "PILATES", sub: "CORE · FLOW · FULL BODY" }
+} %}
+{% include "partials/breadcrumbs.njk" %}
+<div class="wrap">
+  <header class="page-head">
+    <h1>Style guide</h1>
+    <p class="promise">Todos os componentes do site. Esta página não aparece no Google (noindex) nem no sitemap. Os textos dos cabeçalhos abaixo são os exemplos da folha de marca.</p>
+  </header>
+
+  <section class="sg-block">
+    <h2>Colors</h2>
+    <div class="sg-row">
+      <div class="sg-swatch"><span style="background:var(--navy)"></span>navy</div>
+      <div class="sg-swatch"><span style="background:var(--ink-muted)"></span>ink-muted</div>
+      <div class="sg-swatch"><span style="background:var(--paper)"></span>paper</div>
+      <div class="sg-swatch"><span style="background:var(--paper-alt)"></span>paper-alt</div>
+      <div class="sg-swatch"><span style="background:var(--cover-grey)"></span>cover-grey</div>
+    </div>
+    <div class="sg-row" style="margin-top:var(--space-3)">
+      {% for cat in catalog.catList %}
+      <div class="sg-swatch" data-category="{{ cat.key }}"><span style="background:var(--accent)"></span><span style="background:var(--pill);height:28px"></span>{{ cat.key }}</div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="sg-block">
+    <h2>Type</h2>
+    <p class="display" style="font-size:56px;margin-bottom:12px">Anton display <span style="color:var(--balance-accent)">two-tone</span></p>
+    <p style="font-size:44px;font-weight:900;line-height:1.12;margin-bottom:12px">Heading 1 — Inter Black, sentence case</p>
+    <p class="h2" style="font-size:28px;font-weight:900;margin-bottom:12px">Heading 2 — Inter Black</p>
+    <p class="label">Label — Inter ExtraBold, uppercase, spaced</p>
+    <p class="prose" style="margin:0">Body text is Inter Medium at 18–19px with a line height of about 1.6 and a maximum width of 680px, so it is easy to read on a phone.</p>
+  </section>
+
+  <section class="sg-block">
+    <h2>Category pill · dose pill · numbered circle</h2>
+    <div class="sg-row">{% for cat in catalog.catList %}{{ c.catPill(cat, false) }}{% endfor %}</div>
+    <div class="sg-row" style="margin-top:var(--space-2)">{% for cat in catalog.catList %}<span data-category="{{ cat.key }}">{{ c.dose("3 × 10 REPS") }}</span>{% endfor %}</div>
+    <div class="sg-row" style="margin-top:var(--space-2)">{% for cat in catalog.catList %}<span data-category="{{ cat.key }}">{{ c.num(loop.index) }}</span>{% endfor %}</div>
+  </section>
+
+  <section class="sg-block">
+    <h2>Buttons</h2>
+    <div class="sg-row">{% for cat in catalog.catList %}<a class="btn" href="#" data-category="{{ cat.key }}">Get the printable on Etsy {{ icon("arrow-right") | safe }}</a>{% endfor %}</div>
+    <div class="sg-row" style="margin-top:var(--space-2)"><a class="btn btn--navy" href="#">Navy button</a> <a class="btn-ghost" href="#">Ghost button {{ icon("arrow-right") | safe }}</a></div>
+  </section>
+
+  <section class="sg-block">
+    <h2>Category headers (hero banners) — 10 compositions</h2>
+    {% for cat in catalog.catList %}{{ c.hero(cat, samples[cat.key]) }}{% endfor %}
+  </section>
+
+  <section class="sg-block">
+    <h2>Category cards (home)</h2>
+    <ul class="grid grid--3">{% for cat in catalog.catList %}<li>{{ c.catCard(cat, false) }}</li>{% endfor %}</ul>
+  </section>
+
+  <section class="sg-block" data-category="balance">
+    <h2>Exercise card</h2>
+    <div class="prose" style="margin:0">{% if ex %}{{ c.exCard(ex, 1, "3 × 10 REPS", "[NOTE — why this exercise is in this routine]", "senior-man") }}{% endif %}</div>
+  </section>
+
+  <section class="sg-block">
+    <h2>CTA box</h2>
+    <div class="prose" style="margin:0">{% if prod %}{{ c.cta(prod, "styleguide", "cta-mid") }}{% endif %}</div>
+  </section>
+
+  <section class="sg-block">
+    <h2>Product card · post card</h2>
+    <ul class="grid grid--3">
+      {% if prod %}<li>{{ c.productCard(prod, "styleguide") }}</li>{% endif %}
+      {% for p in catalog.posts %}<li>{{ c.postCard(p) }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="sg-block" data-category="balance">
+    <h2>Key takeaways · disclaimer · FAQ · sources · free printable</h2>
+    <div class="prose" style="margin:0">
+      {{ c.takeaways(["[TAKEAWAY 1]", "[TAKEAWAY 2]", "[TAKEAWAY 3]"]) }}
+      {{ c.disclaimer() }}
+      {{ c.faq([{ q: "[QUESTION 1]", a: "[ANSWER 1]" }, { q: "[QUESTION 2]", a: "[ANSWER 2]" }]) }}
+      {{ c.sources([{ name: "[SOURCE NAME]", url: "https://example.org/" }]) }}
+      {{ c.freebie() }}
+    </div>
+  </section>
+</div>

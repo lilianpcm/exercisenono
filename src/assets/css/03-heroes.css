@@ -1,0 +1,73 @@
+/* Cabeçalhos de categoria (hero banners): as 10 composições da marca em HTML com texto real.
+   O tamanho do texto acompanha a largura da caixa (cqi). */
+.hb{container-type:inline-size;background:#fff;border:2px solid var(--paper-alt);border-radius:var(--radius-md);margin-block:var(--space-3);overflow:hidden}
+.hb__in{display:flex;align-items:center;gap:4cqi;padding:5cqi 5cqi;min-height:21cqi}
+.hb p{margin:0}
+.hb__main{min-width:0;flex:1 1 auto}
+.hb .pill--label{font-size:clamp(13px,1.7cqi,15px);line-height:1.3;padding:.4em 1.1em;white-space:nowrap;margin-bottom:.35em}
+.hb__title{font-family:var(--display,var(--font-display));font-weight:400;text-transform:uppercase;font-size:clamp(30px,9.2cqi,98px);line-height:.98;letter-spacing:.005em;color:var(--navy)}
+.hb__label{font-size:clamp(13px,2.1cqi,19px);line-height:1.3;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-top:.5em!important}
+.hb__sub{font-family:var(--font-oswald);font-weight:500;text-transform:uppercase;font-size:clamp(13px,3cqi,28px);line-height:1.2;letter-spacing:.24em;margin-top:.3em!important}
+.hb .icon{stroke-width:2}
+.hb__circle{flex:none;width:15cqi;height:15cqi;min-width:56px;min-height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center}
+.hb__circle .icon{width:50%;height:50%}
+
+/* 01 Joint & Bone: pílula + título em dois tons; à direita, 3 linhas empilhadas */
+.hb--joint .hb__stack{flex:none;display:grid;gap:.25em;padding-left:2.6cqi;border-left:.5cqi solid var(--accent);font-size:clamp(11px,2.5cqi,24px);line-height:1.25;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.hb--joint .hb__stack span:nth-child(2){color:var(--accent)}
+
+/* 02 Tai Chi: tudo centralizado; caixa sólida + título Bebas; legenda entre travessões */
+.hb--taichi .hb__in,.hb--recovery .hb__in,.hb--wellness .hb__in,.hb--pilates .hb__in{flex-direction:column;text-align:center;gap:1.6cqi}
+.hb--taichi .hb__title{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.25em;font-size:clamp(32px,11cqi,108px)}
+.hb--taichi .hb__box{background:var(--accent);color:var(--on-accent);padding:.08em .22em 0;font-size:.72em}
+.hb--taichi .hb__label::before,.hb--taichi .hb__label::after{content:" — "}
+
+/* 04 Chair: título Oswald; painel sólido à direita */
+.hb--chair .hb__in{padding:0;align-items:stretch;gap:0}
+.hb--chair .hb__main{padding:5cqi}
+.hb--chair .hb__title{font-weight:700;font-size:clamp(32px,10cqi,100px);line-height:1.02}
+.hb--chair .hb__panel{flex:none;width:27cqi;background:var(--accent);color:var(--on-accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqi;padding:2cqi;text-align:center;font-family:var(--font-oswald);font-weight:500;text-transform:uppercase;font-size:clamp(12px,3cqi,30px);line-height:1.2;letter-spacing:.1em}
+.hb--chair .hb__panel .icon{width:5.4cqi;height:5.4cqi;min-width:24px;min-height:24px}
+
+/* 05 Recovery: título centralizado entre ícones; subtítulo numa barra */
+.hb--recovery .hb__row{display:flex;align-items:center;justify-content:center;gap:4cqi}
+.hb--recovery .hb__row>.icon{flex:none;width:7cqi;height:7cqi;min-width:28px;min-height:28px;color:var(--accent)}
+.hb--recovery .hb__title{font-size:clamp(26px,8cqi,84px)}
+.hb--recovery .hb__bar{background:var(--accent);color:var(--on-accent);font-family:var(--font-oswald);font-weight:500;text-transform:uppercase;font-size:clamp(12px,2.8cqi,27px);letter-spacing:.2em;padding:.25em 1em}
+
+/* 06 Wellness: título Bebas bem espaçado entre dois fios; folha acima */
+.hb--wellness .hb__in>.icon{width:4cqi;height:4cqi;min-width:22px;min-height:22px;color:var(--accent)}
+.hb--wellness .hb__row{display:flex;align-items:center;gap:3cqi;width:100%}
+.hb--wellness .hb__row::before,.hb--wellness .hb__row::after{content:"";flex:1 1 20px;border-top:.3cqi solid var(--accent);min-width:12px}
+.hb--wellness .hb__title{font-size:clamp(24px,7.2cqi,76px);letter-spacing:.2em;margin-right:-.2em}
+
+/* 07 Gym: segunda palavra em branco sobre bloco inclinado; ícone à direita */
+.hb--gym .hb__title{display:flex;flex-wrap:wrap;align-items:center;gap:.14em .2em}
+.hb--gym .hb__tilt{display:inline-block;background:var(--accent);color:var(--on-accent);padding:.06em .18em 0;transform:rotate(-3deg);font-size:.8em}
+.hb--gym .hb__in>.icon{flex:none;width:11cqi;height:11cqi;min-width:44px;min-height:44px;color:var(--accent);stroke-width:1.8}
+
+/* 08 Pain Relief: círculo na cor da pílula à esquerda; texto alinhado à direita */
+.hb--pain .hb__circle{background:var(--pill);color:var(--accent)}
+.hb--pain .hb__main{text-align:right}
+
+/* 09 Stretching: Barlow Condensed itálico empilhado; bloco à direita */
+.hb--stretching .hb__title{font-weight:800;font-style:italic;font-size:clamp(40px,13cqi,128px);line-height:.9}
+.hb--stretching .hb__small{display:block;font-size:.5em;line-height:1.1;color:var(--accent)}
+.hb--stretching .hb__side{flex:none;text-align:right;font-family:var(--font-bebas);text-transform:uppercase;font-size:clamp(20px,5.4cqi,56px);line-height:1.02;letter-spacing:.03em}
+.hb--stretching .hb__side span{display:block}
+.hb--stretching .hb__side span:nth-of-type(3){color:var(--accent)}
+.hb--stretching .hb__side .pill--label{display:inline-flex;font-family:var(--font-sans);margin-bottom:.6em}
+.hb--stretching .hb__label{margin-top:.2em!important}
+
+/* 10 Pilates: título Bebas muito espaçado; subtítulo entre ondas */
+.hb--pilates .hb__title{font-size:clamp(28px,9cqi,92px);letter-spacing:.3em;margin-right:-.3em}
+.hb--pilates .hb__waves{display:flex;align-items:center;justify-content:center;gap:2cqi;color:var(--accent);font-family:var(--font-bebas);text-transform:uppercase;font-size:clamp(14px,3.6cqi,38px);letter-spacing:.3em;line-height:1.1}
+.hb--pilates .hb__waves .icon{flex:none;width:1.1em;height:1.1em}
+
+@container (max-width:520px){
+  .hb--joint .hb__in,.hb--stretching .hb__in{flex-direction:column;align-items:flex-start}
+  .hb--stretching .hb__side{text-align:left}
+  .hb--gym .hb__in>.icon{display:none}
+}
+
+.hb--balance .hb__title{font-size:clamp(28px,8.2cqi,90px)}

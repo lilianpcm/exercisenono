@@ -1,0 +1,11 @@
+# Mapa de redirecionamentos do blog antigo (Blogger, 2008–2016) para o site novo.
+# status: 301 = redireciona para new_path | 410 = página removida de vez | pending = ainda sem destino (dá 404)
+# Preencha new_path e troque "pending" por 301 quando existir uma página nova SOBRE O MESMO ASSUNTO.
+old_path,new_path,status,note
+/2008/10/machines-reduce-injury-risk-no-no.html,,pending,"mito: máquinas reduzem o risco de lesão"
+/2008/10/no-motivation-no-push-no-time-no-no.html,,pending,"falta de motivação e de tempo"
+/2010/01/media-experts-no-no.html,,pending,"especialistas da mídia"
+/2009/03/no-spinal-flexion-no-ab-workout-no-no.html,,pending,"abdominais sem flexão da coluna"
+/search/label/crunches,,pending,"etiqueta: crunches"
+/search/label/bulging%20disc,,pending,"etiqueta: hérnia de disco"
+/search/label/weight%20loss,,pending,"etiqueta: perda de peso"

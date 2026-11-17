@@ -1,0 +1,66 @@
+{
+  "name": "Exercise No No",
+  "url": "https://exercisenono.com",
+  "lang": "en-US",
+  "author": "Exercise No No Editorial Team",
+  "tagline": "[SITE TAGLINE — one short line]",
+  "brand_line": "[BRAND LINE — one strong sentence that sums up the site]",
+  "about_blurb": "[ABOUT BLURB — 1-2 sentences for the sidebar: what the site is]",
+  "description": "[SITE DESCRIPTION — 1-2 sentences for the home page meta description]",
+  "shop_name": "The Shop Curator",
+  "shop_url": "https://theshopcurator.etsy.com",
+  "social": {
+    "pinterest": "[PINTEREST PROFILE URL]",
+    "instagram": "[INSTAGRAM PROFILE URL]"
+  },
+  "utm": {
+    "source": "exercisenono",
+    "medium": "blog"
+  },
+  "contact_email": "[CONTACT EMAIL]",
+  "disclaimer_short": "General information, not medical advice. Check with your doctor before starting a new exercise program.",
+  "min_posts_per_category": 3,
+  "min_products_for_catalog": 3,
+  "min_exercises_for_library": 6,
+  "verification": {
+    "google": "",
+    "bing": "",
+    "pinterest": ""
+  },
+  "analytics_html": "",
+  "home": {
+    "_sobre": "Blocos da home escolhidos à mão. Use o nome do arquivo (sem .md) dos posts e do produto.",
+    "popular": [
+      "example-dumbbell-routine",
+      "example-common-mistake-article"
+    ],
+    "printable_of_the_week": "dumbbell-workout-men-over-50",
+    "free_printable": {
+      "title": "[FREE PRINTABLE NAME]",
+      "url": "/free-printables/",
+      "image": ""
+    },
+    "pins": [
+      {
+        "image": "products/dumbbell-workout-men-over-50/dumbbell-workout-men-over-50-cover.png",
+        "alt": "Dumbbell workout printable chart",
+        "url": ""
+      },
+      {
+        "image": "products/dumbbell-workout-men-over-50/dumbbell-workout-men-over-50-step-by-step-guide.png",
+        "alt": "Step-by-step exercise guide pages",
+        "url": ""
+      },
+      {
+        "image": "products/dumbbell-workout-men-over-50/dumbbell-workout-men-over-50-video-demos.png",
+        "alt": "Exercise video demo cards",
+        "url": ""
+      },
+      {
+        "image": "products/dumbbell-workout-men-over-50/dumbbell-workout-men-over-50-fitness-planner.png",
+        "alt": "Fitness planner pages",
+        "url": ""
+      }
+    ]
+  }
+}
