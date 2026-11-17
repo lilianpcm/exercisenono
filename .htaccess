@@ -25,10 +25,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1) Sempre https e sem www (um único endereço), com 301
+  # 1) Sempre https e COM www (um único endereço: https://www.exercisenono.com), com 301
   RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP_HOST} ^www\. [NC]
-  RewriteRule ^ https://exercisenono.com%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.exercisenono.com%{REQUEST_URI} [R=301,L]
 
   # 2) Blogger antigo: tira o "?m=1" (versão de celular) do endereço
   RewriteCond %{QUERY_STRING} (^|&)m=[01](&|$)
