@@ -3,7 +3,7 @@ permalink: /
 layout: layouts/base.njk
 type: home
 schema: home
-seo_title: "[HOME SEO TITLE — up to 60 characters, main keyword first]"
+seo_title: "Illustrated Home Exercise Guides | Exercise No No"
 ---
 {% import "components.njk" as c %}
 {# ---------------------------------------------------------------------------
@@ -17,7 +17,7 @@ seo_title: "[HOME SEO TITLE — up to 60 characters, main keyword first]"
   {# 4. Duas colunas: no celular a coluna principal vem primeiro e a barra lateral desce #}
   <div class="home-cols" style="margin-top:var(--space-4)">
     <div class="home-main">
-      <h1 class="home-h1">[HOME H1 — what the site is, main keyword first]</h1>
+      <h1 class="home-h1">Illustrated home exercise guides — and the mistakes to avoid</h1>
       {% for p in catalog.posts %}{% if loop.index <= 6 %}
       {% set cat = catalog.categories[p.category] %}
       {% set pic = p.card_image or p.og_image %}
