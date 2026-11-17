@@ -145,12 +145,17 @@
 {% endmacro %}
 
 {# ---------- bloco de free printable (formulário = placeholder para serviço externo) ---------- #}
-{% macro freebie() %}
+{% macro freebie(headingLevel = 2) %}
+{% set fp = site.home.free_printable %}
 <section class="freebie" aria-labelledby="freebie-h">
   <span class="pill">Free printable</span>
-  <h2 id="freebie-h">[FREE PRINTABLE TITLE]</h2>
-  <p>[FREE PRINTABLE — one line on what the reader gets]</p>
-  <div class="placeholder-note">[EMAIL FORM — paste the embed code of the email service (e.g. MailerLite) here]</div>
+  <h{{ headingLevel }} id="freebie-h">{{ fp.title }}</h{{ headingLevel }}>
+  <p>{{ fp.summary }}</p>
+  <div class="freebie__btns">
+    <a class="btn btn--navy" href="{{ fp.pdf_letter }}" data-track="free-printable-letter">Download (US Letter)</a>
+    <a class="btn-ghost" href="{{ fp.pdf_a4 }}" data-track="free-printable-a4">Download (A4)</a>
+  </div>
+  <p class="freebie__note">Instant download, no sign-up. Free to print and share with credit to Exercise No No.</p>
 </section>
 {% endmacro %}
 

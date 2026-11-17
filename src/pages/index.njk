@@ -98,10 +98,7 @@ seo_title: "Illustrated Home Exercise Guides | Exercise No No"
       </section>
       {% endif %}
 
-      <section class="card side-block" aria-labelledby="side-mail-h">
-        <h2 id="side-mail-h">Free printable by email</h2>
-        <div class="placeholder-note">[EMAIL FORM — embed code of the email service goes here]</div>
-      </section>
+      {# Formulário de e-mail: volta quando houver serviço de e-mail (site.json > email_form) #}
     </aside>
   </div>
 
@@ -119,7 +116,10 @@ seo_title: "Illustrated Home Exercise Guides | Exercise No No"
   {# 6. Bloco central de e-mail #}
   <section class="signup" aria-labelledby="signup-h">
     <h2 id="signup-h">Get the free printable</h2>
-    <p>{{ site.home.free_printable.title }}</p>
-    <div class="placeholder-note">[EMAIL FORM — embed code of the email service goes here]</div>
+    <p>{{ site.home.free_printable.title }}: {{ site.home.free_printable.summary }}</p>
+    <div class="freebie__btns" style="justify-content:center">
+      <a class="btn btn--navy" href="{{ site.home.free_printable.pdf_letter }}" data-track="free-printable-letter">Download (US Letter)</a>
+      <a class="btn-ghost" href="{{ site.home.free_printable.pdf_a4 }}" data-track="free-printable-a4">Download (A4)</a>
+    </div>
   </section>
 </div>

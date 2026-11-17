@@ -36,9 +36,12 @@
     ],
     "printable_of_the_week": "dumbbell-workout-men-over-50",
     "free_printable": {
-      "title": "[FREE PRINTABLE NAME]",
+      "title": "The Exercise No-No List + 5-Minute Warm-Up",
+      "summary": "10 common exercise mistakes and a 5-minute warm-up for any workout. Free printable PDF, A4 and US Letter.",
       "url": "/free-printables/",
-      "image": ""
+      "image": "free/no-no-list-warm-up-preview.png",
+      "pdf_a4": "/assets/downloads/exercise-no-no-list-and-warm-up-a4.pdf",
+      "pdf_letter": "/assets/downloads/exercise-no-no-list-and-warm-up-us-letter.pdf"
     },
     "pins": [
       {

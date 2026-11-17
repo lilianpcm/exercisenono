@@ -50,7 +50,7 @@ export default async function (eleventyConfig) {
     return schemaFor(this.ctx);
   });
 
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts", "src/assets/video": "assets/video", "src/assets/brand": "assets/brand" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts", "src/assets/video": "assets/video", "src/assets/brand": "assets/brand", "src/assets/downloads": "assets/downloads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/brand/favicon.ico": "favicon.ico" });
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
