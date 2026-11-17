@@ -242,6 +242,9 @@ a.pill{min-height:32px}
 .sources li{padding:4px 0}
 .freebie{background:var(--paper-alt);border-radius:var(--radius-md);padding:var(--space-3);margin-block:var(--space-4)}
 .freebie h2{margin-top:10px;font-size:24px}
+.freebie h1,.freebie h2{margin-top:10px}
+.freebie__btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--space-2)}
+.freebie__note{font-size:16px;color:var(--ink-muted);margin:12px 0 0}
 .freebie form{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--space-2)}
 .freebie input{flex:1 1 240px;min-height:54px;padding:0 18px;border:2px solid var(--navy);border-radius:var(--radius-pill);font:500 18px var(--font-sans);color:var(--navy);background:#fff}
 .home-cols{display:grid;gap:var(--space-4);margin-top:var(--space-5);align-items:start}
@@ -815,11 +818,16 @@ a.pill{min-height:32px}
 
 
       
+
 <section class="freebie" aria-labelledby="freebie-h">
   <span class="pill">Free printable</span>
-  <h2 id="freebie-h">[FREE PRINTABLE TITLE]</h2>
-  <p>[FREE PRINTABLE — one line on what the reader gets]</p>
-  <div class="placeholder-note">[EMAIL FORM — paste the embed code of the email service (e.g. MailerLite) here]</div>
+  <h2 id="freebie-h">The Exercise No-No List + 5-Minute Warm-Up</h2>
+  <p>10 common exercise mistakes and a 5-minute warm-up for any workout. Free printable PDF, A4 and US Letter.</p>
+  <div class="freebie__btns">
+    <a class="btn btn--navy" href="/assets/downloads/exercise-no-no-list-and-warm-up-us-letter.pdf" data-track="free-printable-letter">Download (US Letter)</a>
+    <a class="btn-ghost" href="/assets/downloads/exercise-no-no-list-and-warm-up-a4.pdf" data-track="free-printable-a4">Download (A4)</a>
+  </div>
+  <p class="freebie__note">Instant download, no sign-up. Free to print and share with credit to Exercise No No.</p>
 </section>
 
     </div>
