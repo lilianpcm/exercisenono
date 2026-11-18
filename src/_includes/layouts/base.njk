@@ -2,6 +2,14 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
+{% if site.google_tag %}<script>
+// Google tag (Analytics) com consentimento: nada de cookie até a pessoa aceitar no aviso.
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var enC=null;try{enC=localStorage.getItem("enn-consent")}catch(e){}
+gtag("consent","default",{analytics_storage:enC==="granted"?"granted":"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"});
+gtag("js",new Date());
+</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id={{ site.google_tag }}"></script>{% endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ headTitle }}</title>
 <meta name="description" content="{{ metaDescription }}">
@@ -99,5 +107,9 @@
     </div>
   </div>
 </footer>
+{% if site.google_tag %}<div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
+  <p>We use cookies for anonymous visit statistics. See our <a href="/privacy/">privacy policy</a>.</p>
+  <div class="consent__btns"><button type="button" class="btn btn--navy" data-consent="granted">Accept</button><button type="button" class="btn-ghost" data-consent="denied">Decline</button></div>
+</div>{% endif %}
 </body>
 </html>

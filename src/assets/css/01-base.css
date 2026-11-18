@@ -134,3 +134,10 @@ hr{border:0;border-top:2px solid var(--paper-alt);margin:var(--space-4) 0}
 .content>h2,.content>h3{margin-top:var(--space-4);margin-bottom:var(--space-2)}
 .content>h2{margin-top:var(--space-5)}
 .content>:first-child{margin-top:0}
+
+/* Aviso de cookies */
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:720px;margin:0 auto;background:#fff;color:var(--navy);border-radius:var(--radius-md);box-shadow:0 4px 16px rgba(35,57,73,.18);padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;font-size:16px;line-height:24px}
+.consent[hidden]{display:none}
+.consent p{margin:0;flex:1 1 280px}
+.consent__btns{display:flex;gap:10px}
+.consent .btn{min-height:48px;padding:10px 22px;font-size:16px}
