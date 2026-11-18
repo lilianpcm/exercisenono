@@ -1,6 +1,21 @@
 // JavaScript mínimo do site: menu no celular e vídeos de demonstração.
 // Sem JavaScript o site continua funcionando (menu aberto, ilustração START → FINISH no lugar do vídeo).
 (function () {
+  // ----- aviso de cookies (Google Analytics só grava cookie depois do "Accept") -----
+  var box = document.getElementById("consent");
+  if (box) {
+    var saved = null;
+    try { saved = localStorage.getItem("enn-consent"); } catch (e) {}
+    if (!saved) box.hidden = false;
+    box.addEventListener("click", function (ev) {
+      var choice = ev.target && ev.target.getAttribute("data-consent");
+      if (!choice) return;
+      try { localStorage.setItem("enn-consent", choice); } catch (e) {}
+      if (window.gtag) window.gtag("consent", "update", { analytics_storage: choice });
+      box.hidden = true;
+    });
+  }
+
   // ----- menu mobile -----
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");

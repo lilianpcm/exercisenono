@@ -2,6 +2,14 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>
+// Google tag (Analytics) com consentimento: nada de cookie até a pessoa aceitar no aviso.
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var enC=null;try{enC=localStorage.getItem("enn-consent")}catch(e){}
+gtag("consent","default",{analytics_storage:enC==="granted"?"granted":"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"});
+gtag("js",new Date());
+</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KSFBZFSV"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Style guide | Exercise No No</title>
 <meta name="description" content="Every component of the Exercise No No site in one place.">
@@ -145,6 +153,11 @@ hr{border:0;border-top:2px solid var(--paper-alt);margin:var(--space-4) 0}
 .content>h2,.content>h3{margin-top:var(--space-4);margin-bottom:var(--space-2)}
 .content>h2{margin-top:var(--space-5)}
 .content>:first-child{margin-top:0}
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:720px;margin:0 auto;background:#fff;color:var(--navy);border-radius:var(--radius-md);box-shadow:0 4px 16px rgba(35,57,73,.18);padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;font-size:16px;line-height:24px}
+.consent[hidden]{display:none}
+.consent p{margin:0;flex:1 1 280px}
+.consent__btns{display:flex;gap:10px}
+.consent .btn{min-height:48px;padding:10px 22px;font-size:16px}
 .pill{display:inline-flex;align-items:center;gap:var(--space-1);padding:5px 14px;border-radius:var(--radius-pill);background:var(--pill);color:var(--pill-ink);font-size:15px;line-height:20px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-decoration:none}
 .pill--label{background:var(--label-bg);color:var(--label-ink);font-size:13px;line-height:18px;letter-spacing:.12em;padding:5px 14px}
 a.pill{min-height:32px}
@@ -375,7 +388,7 @@ a.pill{min-height:32px}
 }
 .hb--balance .hb__title{font-size:clamp(28px,8.2cqi,90px)}</style>
 <script>document.documentElement.className="js"</script>
-<script src="/assets/js/site.208b8475.js" defer></script>
+<script src="/assets/js/site.4fea0a26.js" defer></script>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/brand/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -874,5 +887,9 @@ a.pill{min-height:32px}
     </div>
   </div>
 </footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie notice" hidden>
+  <p>We use cookies for anonymous visit statistics. See our <a href="/privacy/">privacy policy</a>.</p>
+  <div class="consent__btns"><button type="button" class="btn btn--navy" data-consent="granted">Accept</button><button type="button" class="btn-ghost" data-consent="denied">Decline</button></div>
+</div>
 </body>
 </html>
