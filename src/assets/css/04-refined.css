@@ -65,4 +65,4 @@ h3,h4{font-weight:700}
 .potw__row{background:#fff}
 .side-free img{mix-blend-mode:multiply}.side-free{background:color-mix(in srgb,#8ECFB9 22%,#fff)}
 
-.side-about{background:color-mix(in srgb,#ADD1DA 28%,#fff);border-color:color-mix(in srgb,#ADD1DA 60%,#fff)}
+.card.side-about{background:color-mix(in srgb,#ADD1DA 28%,#fff);border-color:color-mix(in srgb,#ADD1DA 60%,#fff)}
