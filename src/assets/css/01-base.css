@@ -108,6 +108,14 @@ hr{border:0;border-top:2px solid var(--paper-alt);margin:var(--space-4) 0}
 .site-footer__links a{display:inline-block;padding:10px 0;font-weight:700}
 .site-footer__legal{margin-top:8px;padding-top:var(--space-2);border-top:2px solid #dfe3e8;color:var(--ink-muted);width:100%}
 .site-footer__legal p{margin-bottom:6px}
+/* Rodapé navy com o logo invertido (18/11) */
+.site-footer{background:var(--navy);color:#fff}
+.site-footer a,.site-footer__name{color:#fff}
+.site-footer__by{color:#c9d2db}
+.site-footer__legal{border-top-color:rgba(255,255,255,.22);color:#c9d2db}
+.site-footer .social a{background:#fff;color:var(--navy)}
+.site-footer .social span{background:rgba(255,255,255,.35);color:var(--navy)}
+.site-footer a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
 /* Trilha de navegação */
 .breadcrumbs{padding-block:14px 0;font-size:15px;line-height:22px;font-weight:700}

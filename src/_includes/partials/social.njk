@@ -1,8 +1,6 @@
-{# Ícones sociais. Pinterest e Instagram vêm de site.json (social); enquanto não houver link, o ícone não é clicável. #}
+{# Ícones sociais. Pinterest vem de site.json (social); enquanto não houver link, o ícone não é clicável. Sem Instagram (decisão da Lilian, 18/11). #}
 {% set pin = site.social.pinterest if site.social.pinterest.slice(0, 4) == "http" else "" %}
-{% set insta = site.social.instagram if site.social.instagram.slice(0, 4) == "http" else "" %}
 <ul class="social">
   <li>{% if pin %}<a href="{{ pin }}" rel="noopener" aria-label="Pinterest">{% else %}<span title="Pinterest">{% endif %}<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3a7 7 0 0 0-2.6 13.5M11 9l-3 12M12 3a7 7 0 0 1 4 12.7c-1.5 1-3.6.5-4-1.2"/></svg>{% if pin %}</a>{% else %}</span>{% endif %}</li>
-  <li>{% if insta %}<a href="{{ insta }}" rel="noopener" aria-label="Instagram">{% else %}<span title="Instagram">{% endif %}<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/></svg>{% if insta %}</a>{% else %}</span>{% endif %}</li>
   <li><a href="{{ etsy('', 'site', 'social') }}" rel="noopener" aria-label="Etsy shop" data-etsy="social"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.5 12h-11zM9 8V6a3 3 0 0 1 6 0v2"/></svg></a></li>
 </ul>
