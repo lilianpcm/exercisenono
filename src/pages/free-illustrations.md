@@ -2,16 +2,24 @@
 permalink: /free-illustrations/
 layout: layouts/page.njk
 crumb: "Free illustrations"
-title: "[FREE ILLUSTRATIONS H1 — e.g. Free exercise illustrations to use with credit]"
-description: "[FREE ILLUSTRATIONS META DESCRIPTION — up to 160 characters]"
+title: "Free exercise illustrations to use with credit"
+description: "Use our exercise illustrations for free on your blog, class handout or newsletter, with a credit and link to Exercise No No."
 noindex: true   # tire esta linha quando a página estiver escrita e houver ilustrações liberadas
 ---
-[FREE ILLUSTRATIONS INTRO — which illustrations can be used for free and by whom]
+Teachers, trainers, bloggers and community groups can use the exercise illustrations on this page for free, in print or online, as long as they give credit.
 
-## How do you credit us?
+## How to give credit
 
-[CREDIT RULES — the exact credit line and link to use, e.g. Illustration: Exercise No No (exercisenono.com)]
+Place this line next to the illustration, with a link to our site:
 
-## What is not allowed?
+**Illustration: Exercise No No (exercisenono.com)**
 
-[LIMITS — no resale, no use on products for sale, no removal of the credit]
+Online, link "exercisenono.com" to https://www.exercisenono.com.
+
+## What's not allowed
+
+- Selling the illustrations, or using them on products for sale (printables, posters, apps, merchandise).
+- Removing or hiding the credit.
+- Editing the illustrations in a way that changes the exercise instructions.
+
+Questions about other uses? Write to {{ site.contact_email }}.

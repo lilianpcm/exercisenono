@@ -3,17 +3,23 @@ permalink: /about/
 layout: layouts/page.njk
 crumb: "About"
 title: "About Exercise No No"
-description: "[ABOUT META DESCRIPTION — up to 160 characters]"
+description: "Exercise No No shares illustrated home exercise guides: the moves to skip and what to do instead. Made by The Shop Curator."
 
 ---
-[ABOUT — what the site is and who makes it. No credentials, no personal photo. Say plainly that the site is under new ownership and is a new project on this domain.]
+Exercise No No is a library of illustrated exercise guides for working out at home. Every guide shows how to do a move, the mistakes people often make, and what to do instead, so you can exercise with more confidence and fewer setbacks.
 
-## Who makes this site?
+## A new site on a familiar name
 
-[WHO — Exercise No No is made by The Shop Curator, a design shop that creates printable exercise charts and guides.]
+This domain once hosted a different exercise blog. Exercise No No is now a new project under new ownership, with all-new guides and illustrations.
 
-## How is the content made?
+## Who makes it
 
-[HOW — short summary and a link to the editorial policy]
+Exercise No No is made by [The Shop Curator](https://theshopcurator.etsy.com), a design shop that creates printable exercise charts and step-by-step guides. The illustrated characters you see here are the same ones in our printables.
 
-See our [editorial policy](/editorial-policy/) and [disclaimer](/disclaimer/).
+## What we do (and don't do)
+
+- **We explain exercises clearly:** start and finish pictures, short steps, common mistakes and easier or harder options.
+- **We keep the guides free.** If you'd like a complete routine on paper, our printable charts are available on Etsy.
+- **We don't give medical advice.** Our guides are general fitness information. Check with your doctor before starting a new exercise routine, especially if you have a health condition.
+
+Read how we research and check every guide in our [editorial policy](/editorial-policy/). Questions or suggestions? Write to {{ site.contact_email }}.
