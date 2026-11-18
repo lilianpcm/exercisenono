@@ -40,6 +40,9 @@ ErrorDocument 404 /404.html
 
   # 4) URLs antigas com destino definido em src/_data/redirects.csv
 
+  # 4b) O PDF grátis não é mais baixado direto: links antigos vão para o formulário
+  RewriteRule ^assets/downloads/ /free-printables/ [R=301,L]
+
   # 5) Feed do blog antigo -> feed novo (equivalente de verdade)
   RewriteRule ^feeds/ /feed.xml [R=301,L]
 

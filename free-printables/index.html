@@ -336,6 +336,15 @@ a.pill{min-height:32px}
 .sg-swatch span{display:block;width:92px;height:56px;border-radius:var(--radius-sm);border:1px solid #dfe3e8}
 @media print{.site-header,.site-footer,.cta,.nav,.breadcrumbs,.freebie{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.freebie__form{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--space-2);text-align:left;width:min(100%,560px)}
+.freebie__form input[type=email]{flex:1 1 240px;min-height:54px;padding:0 18px;border:2px solid var(--navy);border-radius:var(--radius-pill);font:500 18px var(--font-sans);color:var(--navy);background:#fff}
+.freebie__consent{flex:1 1 100%;display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:22px;color:var(--ink-muted)}
+.freebie__consent input{width:22px;height:22px;margin-top:1px;flex:none;accent-color:var(--navy)}
+.freebie__msg{flex:1 1 100%;margin:0;font-weight:700;color:var(--navy)}
+.freebie__msg:empty{display:none}
+.freebie__msg.is-error{color:#9b2c2c}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.signup .freebie__form{margin-inline:auto}
 .hb{container-type:inline-size;background:#fff;border:2px solid var(--paper-alt);border-radius:var(--radius-md);margin-block:var(--space-3);overflow:hidden}
 .hb__in{display:flex;align-items:center;gap:4cqi;padding:5cqi 5cqi;min-height:21cqi}
 .hb p{margin:0}
@@ -388,7 +397,7 @@ a.pill{min-height:32px}
 }
 .hb--balance .hb__title{font-size:clamp(28px,8.2cqi,90px)}</style>
 <script>document.documentElement.className="js"</script>
-<script src="/assets/js/site.4fea0a26.js" defer></script>
+<script src="/assets/js/site.54daf9c0.js" defer></script>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/brand/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -470,12 +479,19 @@ a.pill{min-height:32px}
 <section class="freebie" aria-labelledby="freebie-h">
   <span class="pill">Free printable</span>
   <h2 id="freebie-h">The Exercise No-No List + 5-Minute Warm-Up</h2>
-  <p>10 common exercise mistakes and a 5-minute warm-up for any workout. Free printable PDF, A4 and US Letter.</p>
-  <div class="freebie__btns">
-    <a class="btn btn--navy" href="/assets/downloads/exercise-no-no-list-and-warm-up-us-letter.pdf" data-track="free-printable-letter">Download (US Letter)</a>
-    <a class="btn-ghost" href="/assets/downloads/exercise-no-no-list-and-warm-up-a4.pdf" data-track="free-printable-a4">Download (A4)</a>
-  </div>
-  <p class="freebie__note">Instant download, no sign-up. Free to print and share with credit to Exercise No No.</p>
+  <p>10 common exercise mistakes and a 5-minute warm-up for any workout. Free printable PDF, A4 and US Letter, sent to your inbox.</p>
+  
+
+<form class="freebie__form" action="/api/free-printable.php" method="post" data-freebie novalidate>
+  <label class="vh" for="fp-email-main">Your email</label>
+  <input id="fp-email-main" type="email" name="email" required autocomplete="email" placeholder="Your email">
+  <input type="hidden" name="source" value="free-printables">
+  <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button class="btn btn--navy" type="submit">Send me the printable</button>
+  <label class="freebie__consent"><input type="checkbox" name="consent" value="yes" required> <span>Email me this printable and occasional tips from Exercise No No. Unsubscribe anytime. <a href="/privacy/">Privacy policy</a>.</span></label>
+  <p class="freebie__msg" role="status" aria-live="polite"></p>
+</form>
+
 </section>
 
 <p>Want a complete routine? See our <a href="/printables/">printable workout charts</a>, each with a step-by-step guide and video demos.</p>
