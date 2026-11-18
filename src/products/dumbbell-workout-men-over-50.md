@@ -6,7 +6,7 @@ title: "[PRODUCT H1 — format keyword first, e.g. Printable dumbbell workout PD
 seo_title: "[PRODUCT SEO TITLE — up to 60 characters]"
 description: "[PRODUCT META DESCRIPTION — what the kit is, in 1-2 sentences; no price]"
 category: balance
-etsy_url: "[ETSY LISTING URL]"        # cole aqui o link da listing (https://www.etsy.com/listing/...)
+etsy_url: "https://www.etsy.com/listing/4619660473/dumbbell-workout-for-men-over-50-senior"
 # index: true só quando a página tiver texto próprio (não repetir o post). Até lá fica com noindex.
 index: false
 cover: "products/dumbbell-workout-men-over-50/dumbbell-workout-men-over-50-cover.png"
