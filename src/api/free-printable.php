@@ -52,8 +52,10 @@ $html = '<!doctype html><html><body style="margin:0;background:#F2F4F6;font-fami
   . '<p style="margin:0 0 4px;font-size:13px;font-weight:bold;letter-spacing:2px">EXERCISE NO NO</p>'
   . '<h1 style="margin:0 0 16px;font-size:24px;line-height:30px">Your free printable is ready</h1>'
   . '<p style="margin:0 0 20px;font-size:17px;line-height:26px">Here is <strong>The Exercise No-No List + 5-Minute Warm-Up</strong>: 10 common exercise mistakes and a 5-minute warm-up for any workout. Choose your paper size:</p>'
-  . '<p style="margin:0 0 12px"><a href="' . $letter . '" style="display:inline-block;background:#233949;color:#ffffff;text-decoration:none;font-weight:bold;font-size:17px;padding:14px 26px;border-radius:999px">Download (US Letter)</a></p>'
-  . '<p style="margin:0 0 24px"><a href="' . $a4 . '" style="display:inline-block;color:#233949;font-weight:bold;font-size:16px">Download (A4)</a></p>'
+  . '<p style="margin:0 0 14px">'
+  . '<a href="' . $letter . '" style="display:inline-block;background:#233949;color:#ffffff;text-decoration:none;font-weight:bold;font-size:17px;padding:14px 24px;border-radius:999px;margin:0 8px 10px 0">Download (US Letter)</a>'
+  . '<a href="' . $a4 . '" style="display:inline-block;background:#233949;color:#ffffff;text-decoration:none;font-weight:bold;font-size:17px;padding:14px 24px;border-radius:999px;margin:0 8px 10px 0">Download (A4)</a>'
+  . '</p>'
   . '<p style="margin:0 0 16px;font-size:15px;line-height:23px">The links work for ' . TOKEN_DAYS . ' days. Want a complete routine? See our printable workouts at <a href="' . SITE_URL . '/printables/" style="color:#233949">exercisenono.com</a>.</p>'
   . '<p style="margin:0;font-size:13px;line-height:20px;color:#5B6878">General fitness information, not medical advice. Check with your doctor before starting a new exercise routine.<br>You received this email because you asked for this printable at exercisenono.com. Reply to this email if you have any questions or no longer want to hear from us.</p>'
   . '</td></tr></table></td></tr></table></body></html>';
