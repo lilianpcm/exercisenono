@@ -38,7 +38,8 @@ seo_title: "Illustrated Home Exercise Guides | Exercise No No"
       </article>
       {% if loop.index == 2 or (loop.last and loop.index < 2) %}
       <blockquote class="brandline">
-        <p>{{ site.brand_line }}</p>
+        {% set bl = site.brand_line.split(site.brand_line_accent) %}
+        <p>{{ bl[0] }}{% if bl.length > 1 %}<span class="brandline__accent">{{ site.brand_line_accent }}</span>{{ bl[1] }}{% endif %}</p>
         <footer>— {{ site.name }}</footer>
       </blockquote>
       {% endif %}
@@ -61,7 +62,6 @@ seo_title: "Illustrated Home Exercise Guides | Exercise No No"
       <section class="card side-block" aria-labelledby="side-about-h">
         <h2 id="side-about-h">About</h2>
         <div class="side-about__top">
-          <img src="/assets/brand/exercise-no-no-512.png" alt="" width="64" height="64" loading="lazy">
           <span class="side-about__name">{{ site.name }}</span>
         </div>
         <p>{{ site.about_blurb }}</p>
