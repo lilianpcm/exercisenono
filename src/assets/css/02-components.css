@@ -212,3 +212,14 @@ a.pill{min-height:32px}
 
 @media print{.site-header,.site-footer,.cta,.nav,.breadcrumbs,.freebie{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Formulário do printable grátis */
+.freebie__form{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--space-2);text-align:left;width:min(100%,560px)}
+.freebie__form input[type=email]{flex:1 1 240px;min-height:54px;padding:0 18px;border:2px solid var(--navy);border-radius:var(--radius-pill);font:500 18px var(--font-sans);color:var(--navy);background:#fff}
+.freebie__consent{flex:1 1 100%;display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:22px;color:var(--ink-muted)}
+.freebie__consent input{width:22px;height:22px;margin-top:1px;flex:none;accent-color:var(--navy)}
+.freebie__msg{flex:1 1 100%;margin:0;font-weight:700;color:var(--navy)}
+.freebie__msg:empty{display:none}
+.freebie__msg.is-error{color:#9b2c2c}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.signup .freebie__form{margin-inline:auto}

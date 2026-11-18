@@ -127,3 +127,14 @@ A home segue a estrutura do mockup (barra lateral, cards horizontais, faixa do P
 ## 10. Marca
 
 Cores e fontes vêm de `src/_data/tokens.json` (cópia do design system "The Shop Curator — Exercises Brand"). Mudou lá, muda no site inteiro. Todos os componentes aparecem em `/styleguide/` (página fora do Google).
+
+## Printable grátis por e-mail (configurar uma vez na Hostinger)
+
+O formulário do printable grátis envia o link de download pelo **hello@exercisenono.com**, com o servidor de e-mail da própria Hostinger (como o Post SMTP fazia no WordPress). O PDF não fica público: só abre pelo link do e-mail, que vale 30 dias.
+
+1. No Gerenciador de Arquivos, vá para a pasta **acima** do `public_html` e crie a pasta `exercisenono-private`.
+2. Dentro dela, crie o arquivo `config.php` copiando o modelo `public_html/api/lib/config.example.php` e troque `SUA-SENHA` pela senha da caixa hello@exercisenono.com. **Nunca** coloque a senha no GitHub.
+3. Em **E-mails** no hPanel, confira se SPF e DKIM do domínio estão ativos (evita cair no spam).
+4. Teste: peça o printable no site com um e-mail seu.
+
+Nessa mesma pasta privada ficam a **lista de e-mails** (`subscribers.csv`, abre no Excel) e o controle contra abuso (`ratelimit.json`). Os PDFs ficam em `src/api/files/` (bloqueados para acesso direto).

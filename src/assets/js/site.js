@@ -1,6 +1,43 @@
 // JavaScript mínimo do site: menu no celular e vídeos de demonstração.
 // Sem JavaScript o site continua funcionando (menu aberto, ilustração START → FINISH no lugar do vídeo).
 (function () {
+  // ----- formulário do printable grátis: envia sem sair da página e mostra o resultado -----
+  var MSG = {
+    ok: "Check your inbox: your printable is on its way. If it isn't there in a few minutes, look in your spam folder.",
+    email: "Please enter a valid email address.",
+    consent: "Please tick the box so we can email you the printable.",
+    limit: "Too many requests. Please try again in an hour.",
+    expired: "That download link has expired. Enter your email to get a new one.",
+    send: "Sorry, something went wrong. Please try again later or write to hello@exercisenono.com.",
+    server: "Sorry, something went wrong. Please try again later or write to hello@exercisenono.com."
+  };
+  function show(form, code, ok) {
+    var el = form.querySelector(".freebie__msg");
+    if (!el) return;
+    el.textContent = MSG[code] || MSG.server;
+    el.classList.toggle("is-error", !ok);
+  }
+  var forms = document.querySelectorAll("[data-freebie]");
+  Array.prototype.forEach.call(forms, function (form) {
+    form.addEventListener("submit", function (ev) {
+      if (!window.fetch || !window.FormData) return;
+      ev.preventDefault();
+      var email = form.querySelector("input[type=email]");
+      var consent = form.querySelector("input[name=consent]");
+      if (!email.value || !email.checkValidity()) { show(form, "email", false); email.focus(); return; }
+      if (!consent.checked) { show(form, "consent", false); consent.focus(); return; }
+      var btn = form.querySelector("button");
+      btn.disabled = true;
+      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { show(form, d.code, d.ok); if (d.ok) { form.reset(); if (window.gtag) window.gtag("event", "generate_lead", { form: "free_printable" }); } })
+        .catch(function () { show(form, "server", false); })
+        .then(function () { btn.disabled = false; });
+    });
+  });
+  var err = /[?&]error=([a-z]+)/.exec(location.search);
+  if (err && forms[0]) show(forms[0], err[1], false);
+
   // ----- aviso de cookies (Google Analytics só grava cookie depois do "Accept") -----
   var box = document.getElementById("consent");
   if (box) {

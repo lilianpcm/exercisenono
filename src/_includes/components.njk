@@ -145,17 +145,26 @@
 {% endmacro %}
 
 {# ---------- bloco de free printable (formulário = placeholder para serviço externo) ---------- #}
-{% macro freebie(headingLevel = 2) %}
+{% macro freeForm(id, source) %}
+{% set fp = site.home.free_printable %}
+<form class="freebie__form" action="{{ fp.form_action }}" method="post" data-freebie novalidate>
+  <label class="vh" for="fp-email-{{ id }}">Your email</label>
+  <input id="fp-email-{{ id }}" type="email" name="email" required autocomplete="email" placeholder="Your email">
+  <input type="hidden" name="source" value="{{ source }}">
+  <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button class="btn btn--navy" type="submit">Send me the printable</button>
+  <label class="freebie__consent"><input type="checkbox" name="consent" value="yes" required> <span>Email me this printable and occasional tips from Exercise No No. Unsubscribe anytime. <a href="/privacy/">Privacy policy</a>.</span></label>
+  <p class="freebie__msg" role="status" aria-live="polite"></p>
+</form>
+{% endmacro %}
+
+{% macro freebie(headingLevel = 2, source = "free-printables") %}
 {% set fp = site.home.free_printable %}
 <section class="freebie" aria-labelledby="freebie-h">
   <span class="pill">Free printable</span>
   <h{{ headingLevel }} id="freebie-h">{{ fp.title }}</h{{ headingLevel }}>
   <p>{{ fp.summary }}</p>
-  <div class="freebie__btns">
-    <a class="btn btn--navy" href="{{ fp.pdf_letter }}" data-track="free-printable-letter">Download (US Letter)</a>
-    <a class="btn-ghost" href="{{ fp.pdf_a4 }}" data-track="free-printable-a4">Download (A4)</a>
-  </div>
-  <p class="freebie__note">Instant download, no sign-up. Free to print and share with credit to Exercise No No.</p>
+  {{ freeForm("main", source) }}
 </section>
 {% endmacro %}
 
